@@ -6,11 +6,14 @@
   justify-content: center;
   align-items: center;
   height: 400px;
-  width: 300px;
+  width: 100%;
   background-color: $background-color-primary;
   border-radius: 0.5rem;
   color: $color-primary;
   cursor: pointer;
+  @media screen and (min-width: 768px) {
+    width: 300px;
+  }
 
   &__content-container {
     width: 90%;
