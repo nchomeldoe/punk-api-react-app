@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/punk-api-react-app/static/css/main.12329c85.css",
-    "main.js": "/punk-api-react-app/static/js/main.dab0564c.js",
+    "main.css": "/punk-api-react-app/static/css/main.b2ea70c1.css",
+    "main.js": "/punk-api-react-app/static/js/main.2fbb91f9.js",
     "static/js/787.3d6454e7.chunk.js": "/punk-api-react-app/static/js/787.3d6454e7.chunk.js",
     "index.html": "/punk-api-react-app/index.html",
-    "main.12329c85.css.map": "/punk-api-react-app/static/css/main.12329c85.css.map",
-    "main.dab0564c.js.map": "/punk-api-react-app/static/js/main.dab0564c.js.map",
+    "main.b2ea70c1.css.map": "/punk-api-react-app/static/css/main.b2ea70c1.css.map",
+    "main.2fbb91f9.js.map": "/punk-api-react-app/static/js/main.2fbb91f9.js.map",
     "787.3d6454e7.chunk.js.map": "/punk-api-react-app/static/js/787.3d6454e7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.12329c85.css",
-    "static/js/main.dab0564c.js"
+    "static/css/main.b2ea70c1.css",
+    "static/js/main.2fbb91f9.js"
   ]
 }
