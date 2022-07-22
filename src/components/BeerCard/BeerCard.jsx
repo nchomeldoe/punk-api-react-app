@@ -11,6 +11,7 @@ const BeerCard = ({ beer }) => {
     ph,
     food_pairing,
   } = beer;
+
   return (
     <div className="beer-card">
       <div className="beer-card__content-container">
@@ -21,7 +22,9 @@ const BeerCard = ({ beer }) => {
           ABV: {abv} | pH: {ph}
         </p>
         <p className="beer-card__first-brewed">Since: {first_brewed}</p>
-        <p className="beer-card__description">{description}</p>
+        <p className="beer-card__description">{`${
+          description?.split(". ")[0]
+        }.`}</p>
         <h5 className="beer-card__pairings-header">Pair with:</h5>
         <ul className="beer-card__pairings">
           {food_pairing?.map((dish, index) => (

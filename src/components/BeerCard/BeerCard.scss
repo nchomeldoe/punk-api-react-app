@@ -5,14 +5,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 400px;
+  height: 25rem;
   width: 100%;
   background-color: $background-color-primary;
   border-radius: 0.5rem;
   color: $color-primary;
   cursor: pointer;
   @media screen and (min-width: 768px) {
-    width: 300px;
+    min-width: 15rem;
   }
 
   &__content-container {
@@ -20,6 +20,7 @@
     height: 90%;
     display: flex;
     flex-direction: column;
+    text-align: center;
     align-items: center;
     overflow-y: scroll;
     scrollbar-width: none; /* for Firefox */
@@ -31,15 +32,19 @@
 
   &__image {
     height: 50%;
-    margin-bottom: 0.313rem;
+    margin-bottom: 0.4rem;
   }
 
   &__name {
-    margin-bottom: 0.625rem;
+    margin-bottom: 0.75rem;
   }
 
   &__tagline {
-    margin-bottom: 0.625rem;
+    margin-bottom: 1.25rem;
+  }
+
+  &__abv-ph {
+    margin-bottom: 0.4rem;
   }
 
   &__first-brewed {
@@ -49,11 +54,21 @@
   &__description {
     margin-bottom: 1.25rem;
     text-align: justify;
+    line-height: 150%;
+  }
+
+  &__pairings-header {
+    margin-bottom: 0.4rem;
   }
 
   &__pairings {
     list-style: none;
     font-size: 0.875rem;
     text-align: center;
+    line-height: 150%;
+  }
+
+  &__pairing {
+    margin-bottom: 0.2rem;
   }
 }
