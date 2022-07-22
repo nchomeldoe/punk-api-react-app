@@ -1,0 +1,11 @@
+@use "./assets/sass/_variables.scss" as *;
+
+.app {
+  display: flex;
+  font-family: $font-family;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+}
