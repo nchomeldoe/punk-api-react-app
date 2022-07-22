@@ -1,0 +1,51 @@
+// @use "../assets/sass/_variables.scss" as *;
+@use "../../assets/sass/_variables.scss" as *;
+
+.beer-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 275px;
+  background-color: $primary-background-color;
+  border-radius: 0.5rem;
+  // border: 0.3rem solid $primary-background-color;
+
+  &__content-container {
+    width: 90%;
+    height: 90%;
+    overflow-y: scroll;
+    scrollbar-width: none; /* for Firefox */
+
+    &::-webkit-scrollbar {
+      display: none; /* for Chrome, Safari, and Opera */
+    }
+  }
+
+  &__image {
+    height: 50%;
+    margin-bottom: $base-spacing;
+  }
+
+  &__name {
+    margin-bottom: $base-spacing * 2;
+  }
+
+  &__tagline {
+    margin-bottom: $base-spacing * 2;
+  }
+
+  &__first-brewed {
+    margin-bottom: $base-spacing * 4;
+  }
+
+  &__description {
+    margin-bottom: $base-spacing * 4;
+    text-align: justify;
+  }
+
+  &__pairings {
+    list-style: none;
+    font-size: 14px;
+  }
+}
