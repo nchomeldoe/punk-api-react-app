@@ -1,7 +1,8 @@
+@use "../../assets/sass/_variables.scss" as *;
+
 .main {
   width: 100vw;
   padding: 1rem;
-  border: 2px solid black;
   display: flex;
   align-items: center;
   justify-content: center;

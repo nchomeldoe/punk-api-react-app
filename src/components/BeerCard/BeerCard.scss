@@ -9,7 +9,8 @@
   width: 275px;
   background-color: $primary-background-color;
   border-radius: 0.5rem;
-  // border: 0.3rem solid $primary-background-color;
+  color: $primary-color;
+  cursor: pointer;
 
   &__content-container {
     width: 90%;

@@ -1,7 +1,9 @@
+@use "../../assets/sass/_variables.scss" as *;
+
 .header {
   width: 100vw;
-
-  border: 2px solid black;
+  background-color: $primary-background-color;
+  color: $primary-color;
   @media screen and (min-width: 768px) {
     width: 20vw;
   }
