@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
+import "./App.scss";
 import getBeers from "./services/beer.service.js";
 import Header from "./containers/Header/Header";
 import Main from "./containers/Main/Main";
-import "./App.scss";
 
 const App = () => {
   const [beers, setBeers] = useState([]);

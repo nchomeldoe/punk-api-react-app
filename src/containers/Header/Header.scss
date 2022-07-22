@@ -1,0 +1,8 @@
+.header {
+  width: 100vw;
+
+  border: 2px solid black;
+  @media screen and (min-width: 768px) {
+    width: 20vw;
+  }
+}
