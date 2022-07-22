@@ -1,10 +1,40 @@
 @use "../../assets/sass/_variables.scss" as *;
 
 .header {
+  height: 20vh;
   width: 100vw;
-  background-color: $primary-background-color;
-  color: $primary-color;
+  background-color: $background-color-primary;
+  color: $color-primary;
+  position: sticky;
+  top: 0;
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   @media screen and (min-width: 768px) {
     width: 20vw;
+    height: 100vh;
+  }
+  &__heading {
+    font-size: 1.6rem;
+    line-height: 140%;
+  }
+  &__subheading {
+    font-size: 1.2rem;
+    line-height: 140%;
+  }
+  &__separator {
+    margin-top: 0.4rem;
+    width: 12rem;
+    background-color: $color-primary;
+    border: none;
+    height: 0.1rem;
+  }
+  &__filters-container {
+    display: flex;
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
   }
 }

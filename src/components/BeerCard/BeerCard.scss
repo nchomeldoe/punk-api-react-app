@@ -6,15 +6,18 @@
   justify-content: center;
   align-items: center;
   height: 400px;
-  width: 275px;
-  background-color: $primary-background-color;
+  width: 300px;
+  background-color: $background-color-primary;
   border-radius: 0.5rem;
-  color: $primary-color;
+  color: $color-primary;
   cursor: pointer;
 
   &__content-container {
     width: 90%;
     height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     overflow-y: scroll;
     scrollbar-width: none; /* for Firefox */
 
@@ -25,28 +28,29 @@
 
   &__image {
     height: 50%;
-    margin-bottom: $base-spacing;
+    margin-bottom: 0.313rem;
   }
 
   &__name {
-    margin-bottom: $base-spacing * 2;
+    margin-bottom: 0.625rem;
   }
 
   &__tagline {
-    margin-bottom: $base-spacing * 2;
+    margin-bottom: 0.625rem;
   }
 
   &__first-brewed {
-    margin-bottom: $base-spacing * 4;
+    margin-bottom: 1.25rem;
   }
 
   &__description {
-    margin-bottom: $base-spacing * 4;
+    margin-bottom: 1.25rem;
     text-align: justify;
   }
 
   &__pairings {
     list-style: none;
-    font-size: 14px;
+    font-size: 0.875rem;
+    text-align: center;
   }
 }
