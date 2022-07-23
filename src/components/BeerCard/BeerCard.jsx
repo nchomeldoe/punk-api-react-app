@@ -37,6 +37,7 @@ const BeerCard = ({ beer }) => {
             </li>
           ))}
         </ul>
+        <h5 className="beer-card__pairings-header">Find out more...</h5>
       </div>
     </div>
   );
