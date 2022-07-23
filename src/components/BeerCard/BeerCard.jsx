@@ -18,7 +18,6 @@ const BeerCard = ({ beer }) => {
     trimmedDescription += ".";
   }
 
-  console.log(description);
   return (
     <div className="beer-card">
       <div className="beer-card__content-container">

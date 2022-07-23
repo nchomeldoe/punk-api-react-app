@@ -1,7 +1,6 @@
 @use "../../assets/sass/_variables.scss" as *;
 
 .header {
-  height: 20vh;
   width: 100vw;
   background-image: linear-gradient(
     to top,
@@ -17,6 +16,12 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  @media screen and (max-width: 768px) and (orientation: landscape) {
+    width: 20vw;
+    height: 100vh;
+    background-image: none;
+    background-color: inherit;
+  }
   @media screen and (min-width: 768px) {
     width: 20vw;
     height: 100vh;
@@ -24,23 +29,21 @@
     background-color: inherit;
   }
   &__heading {
-    font-size: 1.6rem;
-    line-height: 140%;
+    font-size: 2rem;
+    line-height: 150%;
+    text-shadow: 2px 2px 2px white;
   }
   &__subheading {
-    font-size: 1.2rem;
-    line-height: 140%;
+    font-size: 1.5rem;
+    line-height: 150%;
+    text-shadow: 2px 2px 2px white;
   }
   &__separator {
-    margin-top: 0.4rem;
+    margin: 0.8rem;
     width: 12rem;
     background-color: black;
     border: none;
     height: 0.1rem;
-  }
-  &__filters-container {
-    display: flex;
-    font-size: 0.8rem;
-    margin-top: 0.4rem;
+    box-shadow: 2px 2px 2px white;
   }
 }
