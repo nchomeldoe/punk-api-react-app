@@ -8,7 +8,8 @@
   justify-content: center;
 
   @media screen and (max-width: 768px) and (orientation: landscape) {
-    width: 80vw;
+    width: 80vmax;
+    height: 100vmin;
   }
   @media screen and (min-width: 768px) {
     width: 80vw;
@@ -20,6 +21,7 @@
     gap: 0.5rem;
     align-items: center;
     @media screen and (min-width: 768px) {
+      max-height: 100%;
       max-width: 100%;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
