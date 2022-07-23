@@ -7,10 +7,6 @@
   align-items: center;
   justify-content: center;
 
-  @media screen and (max-width: 768px) and (orientation: landscape) {
-    width: 80vmax;
-    height: 100vmin;
-  }
   @media screen and (min-width: 768px) {
     width: 80vw;
   }

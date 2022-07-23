@@ -17,10 +17,12 @@
   justify-content: center;
   text-align: center;
   @media screen and (max-width: 768px) and (orientation: landscape) {
-    width: 20vmax;
-    height: 100vh;
+    max-width: 30vmax;
+    height: 100vmin;
     background-image: none;
     background-color: inherit;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
   @media screen and (min-width: 768px) {
     width: 20vw;
@@ -32,18 +34,29 @@
     font-size: 2rem;
     line-height: 150%;
     text-shadow: 2px 2px 2px white;
+    @media screen and (max-width: 768px) and (orientation: landscape) {
+      font-size: 1.4rem;
+      line-height: 150%;
+    }
   }
   &__subheading {
     font-size: 1.5rem;
     line-height: 150%;
     text-shadow: 2px 2px 2px white;
+    @media screen and (max-width: 768px) and (orientation: landscape) {
+      font-size: 1.1rem;
+      line-height: 150%;
+    }
   }
   &__separator {
-    margin: 0.8rem;
+    margin: 0.8rem 0;
     width: 12rem;
     background-color: black;
     border: none;
     height: 0.1rem;
     box-shadow: 2px 2px 2px white;
+    @media screen and (max-width: 768px) and (orientation: landscape) {
+      width: 8rem;
+    }
   }
 }
