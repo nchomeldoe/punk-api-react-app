@@ -4,27 +4,27 @@ import "./SingleBeer.scss";
 const SingleBeer = ({ beers }) => {
   const { beerId } = useParams();
   const {
-    abv,
-    attenuation_level,
-    boil_volume,
-    brewers_tips,
-    contributed_by,
+    // abv,
+    // attenuation_level,
+    // boil_volume,
+    // brewers_tips,
+    // contributed_by,
     description,
-    ebc,
-    first_brewed,
-    food_pairing,
-    ibu,
-    image_url,
-    ingredients,
-    method,
+    // ebc,
+    // first_brewed,
+    // food_pairing,
+    // ibu,
+    // image_url,
+    // ingredients,
+    // method,
     name,
-    ph,
-    srm,
+    // ph,
+    // srm,
     tagline,
-    target_fg,
-    target_og,
-    volume,
-  } = beers.find((beer) => beer.id == beerId);
+    // target_fg,
+    // target_og,
+    // volume,
+  } = beers.find((beer) => Number(beer.id) === Number(beerId));
 
   return (
     <div className="single-beer">
