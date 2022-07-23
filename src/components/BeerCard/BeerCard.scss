@@ -1,4 +1,3 @@
-// @use "../assets/sass/_variables.scss" as *;
 @use "../../assets/sass/_variables.scss" as *;
 
 .beer-card {
@@ -33,9 +32,13 @@
     }
   }
 
-  &__image {
+  &__link--image {
     height: 50%;
     margin-bottom: 0.4rem;
+  }
+
+  &__image {
+    height: 100%;
     cursor: pointer;
   }
 
@@ -77,8 +80,13 @@
     margin-bottom: 0.2rem;
   }
 
-  &__pairings-header {
+  &__link--more-info {
+    text-decoration: none;
+  }
+
+  &__more-info {
     text-align: center;
+    color: black;
     cursor: pointer;
     &:hover {
       text-shadow: 2px 2px 2px $gradient-color-start;

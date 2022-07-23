@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./BeerCard.scss";
 
 const BeerCard = ({ beer }) => {
@@ -10,6 +12,7 @@ const BeerCard = ({ beer }) => {
     abv,
     ph,
     food_pairing,
+    id,
   } = beer;
 
   let trimmedDescription = description?.split(". ")[0] || "";
@@ -21,7 +24,9 @@ const BeerCard = ({ beer }) => {
   return (
     <div className="beer-card">
       <div className="beer-card__content-container">
-        <img className="beer-card__image" src={image_url} alt={name} />
+        <Link to={`/${id}`} className="beer-card__link beer-card__link--image">
+          <img className="beer-card__image" src={image_url} alt={name} />
+        </Link>
         <h3 className="beer-card__name">{name}</h3>
         <h4 className="beer-card__tagline">{tagline}</h4>
         <p className="beer-card__abv-ph">
@@ -37,7 +42,12 @@ const BeerCard = ({ beer }) => {
             </li>
           ))}
         </ul>
-        <h5 className="beer-card__pairings-header">Find out more...</h5>
+        <Link
+          to={`/${id}`}
+          className="beer-card__link beer-card__link--more-info"
+        >
+          <h5 className="beer-card__more-info">Find out more...</h5>
+        </Link>{" "}
       </div>
     </div>
   );

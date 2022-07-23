@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import "./App.scss";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import getBeers from "./services/beer.service.js";
-import Header from "./containers/Header/Header";
-import Main from "./containers/Main/Main";
+import Home from "./containers/Home/Home.jsx";
+import SingleBeer from "./components/SingleBeer/SingleBeer.jsx";
+import "./App.scss";
 
 const App = () => {
   const [beers, setBeers] = useState([]);
@@ -50,7 +51,7 @@ const App = () => {
     getData();
   }, [abvFilter, classicFilter, phFilter, search]);
 
-  console.log("my beers", beers[0]?.name);
+  console.log("my beers", beers[0]);
 
   const toggleAbvFilter = () => {
     setAbvFilter(!abvFilter);
@@ -65,18 +66,25 @@ const App = () => {
   };
 
   return (
-    <>
+    <Router>
       <div className="app">
-        <Header
-          // beers={beers}
-          toggleAbvFilter={toggleAbvFilter}
-          toggleClassicFilter={toggleClassicFilter}
-          togglePhFilter={togglePhFilter}
-          setSearch={setSearch}
-        />
-        <Main beers={beers} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                beers={beers}
+                toggleAbvFilter={toggleAbvFilter}
+                toggleClassicFilter={toggleClassicFilter}
+                togglePhFilter={togglePhFilter}
+                setSearch={setSearch}
+              />
+            }
+          />
+          <Route path="/:beerId" element={<SingleBeer beers={beers} />} />
+        </Routes>
       </div>
-    </>
+    </Router>
   );
 };
 
