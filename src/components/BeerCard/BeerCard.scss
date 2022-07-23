@@ -6,10 +6,11 @@
   justify-content: center;
   align-items: center;
   height: 25rem;
-  width: 100%;
-  background-color: $background-color-primary;
+  max-width: 25rem;
+  background-color: rgba(210, 206, 206, 0.694);
   border-radius: 0.5rem;
-  color: $color-primary;
+  color: black;
+  border: 1px solid black;
   cursor: pointer;
   @media screen and (min-width: 768px) {
     min-width: 15rem;

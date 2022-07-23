@@ -3,8 +3,12 @@
 .header {
   height: 20vh;
   width: 100vw;
-  background-color: $background-color-primary;
-  color: $color-primary;
+  background-image: linear-gradient(
+    to top,
+    $gradient-color-start,
+    $gradient-color-finish
+  );
+  color: black;
   position: sticky;
   top: 0;
   padding: 0.8rem 1.2rem;
@@ -16,6 +20,8 @@
   @media screen and (min-width: 768px) {
     width: 20vw;
     height: 100vh;
+    background-image: none;
+    background-color: inherit;
   }
   &__heading {
     font-size: 1.6rem;
@@ -28,7 +34,7 @@
   &__separator {
     margin-top: 0.4rem;
     width: 12rem;
-    background-color: $color-primary;
+    background-color: black;
     border: none;
     height: 0.1rem;
   }

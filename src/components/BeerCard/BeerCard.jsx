@@ -12,6 +12,13 @@ const BeerCard = ({ beer }) => {
     food_pairing,
   } = beer;
 
+  let trimmedDescription = description?.split(". ")[0] || "";
+
+  if (trimmedDescription.charAt(trimmedDescription.length - 1) !== ".") {
+    trimmedDescription += ".";
+  }
+
+  console.log(description);
   return (
     <div className="beer-card">
       <div className="beer-card__content-container">
@@ -22,9 +29,7 @@ const BeerCard = ({ beer }) => {
           ABV: {abv} | pH: {ph}
         </p>
         <p className="beer-card__first-brewed">Since: {first_brewed}</p>
-        <p className="beer-card__description">{`${
-          description?.split(". ")[0]
-        }.`}</p>
+        <p className="beer-card__description">{trimmedDescription}</p>
         <h5 className="beer-card__pairings-header">Pair with:</h5>
         <ul className="beer-card__pairings">
           {food_pairing?.map((dish, index) => (

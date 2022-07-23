@@ -67,7 +67,6 @@ const App = () => {
   return (
     <>
       <div className="app">
-        {/* <div className={nav}> */}
         <Header
           // beers={beers}
           toggleAbvFilter={toggleAbvFilter}
@@ -75,10 +74,7 @@ const App = () => {
           togglePhFilter={togglePhFilter}
           setSearch={setSearch}
         />
-        {/* </div> */}
-        {/* <div className={main}> */}
         <Main beers={beers} />
-        {/* </div> */}
       </div>
     </>
   );
