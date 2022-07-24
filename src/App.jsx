@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+
 import getBeers from "./services/beer.service.js";
 import Home from "./containers/Home/Home.jsx";
 import SingleBeer from "./components/SingleBeer/SingleBeer.jsx";
