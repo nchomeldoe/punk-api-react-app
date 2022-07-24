@@ -1,0 +1,15 @@
+.filter-container {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__heading {
+    margin-bottom: 1.2rem;
+  }
+
+  &__filters {
+    display: flex;
+    flex-direction: column;
+  }
+}

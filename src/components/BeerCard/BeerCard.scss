@@ -6,10 +6,10 @@
   align-items: center;
   height: 25rem;
   max-width: 25rem;
-  background-color: rgba(210, 206, 206, 0.694);
+  background-color: $color-card;
   border-radius: 0.5rem;
-  color: black;
-  border: 1px solid black;
+  color: $color-text;
+  border: 0.063rem solid $color-text;
   @media screen and (max-width: 768px) and (orientation: landscape) {
     height: 95vmin;
   }
@@ -86,10 +86,10 @@
 
   &__more-info {
     text-align: center;
-    color: black;
+    color: $color-text;
     cursor: pointer;
     &:hover {
-      text-shadow: 2px 2px 2px $gradient-color-start;
+      text-shadow: 0.125rem 0.125rem 0.125rem $gradient-color-start;
     }
   }
 }

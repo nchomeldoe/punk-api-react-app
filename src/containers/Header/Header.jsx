@@ -8,8 +8,11 @@ const Header = () => {
       <h1 className="header__heading">BrewDog Beer</h1>
       <h2 className="header__subheading">Back Catalogue</h2>
       <hr className="header__separator" />
-      <FilterContainer />
-      <FilterContainer />
+      <FilterContainer type="search" by={["Name", "Food pairing"]} />
+      <FilterContainer
+        type="filter"
+        by={[{ "abv-gt": 6 }, { "brewed-before": 2010 }, { "ph-lt": 4 }]}
+      />
     </div>
   );
 };
