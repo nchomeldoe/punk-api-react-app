@@ -14,6 +14,7 @@ const App = () => {
   const [phFilter, setPhFilter] = useState(false);
   const [nameSearch, setNameSearch] = useState("");
   const [foodSearch, setFoodSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const API_URL = "https://api.punkapi.com/v2/beers";
 
   const toggleAbvFilter = () => {
@@ -36,6 +37,20 @@ const App = () => {
     setFoodSearch(e.target.value);
   };
 
+  const handleIncrementPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handleDecrementPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    } else {
+      return;
+    }
+  };
+
+  console.log("cp1", currentPage);
+
   useEffect(() => {
     let queryParams = "";
     const getData = async () => {
@@ -52,6 +67,17 @@ const App = () => {
           ? queryParams.replace("brewed_before=01-2010&", "")
           : "";
       }
+
+      if (currentPage > 1) {
+        queryParams += `page=${currentPage}&`;
+      } else {
+        if (queryParams.includes("page=")) {
+          queryParams = queryParams.replace("page=2&", "");
+        }
+      }
+
+      console.log("cp", currentPage);
+      console.log("qp", queryParams);
 
       let displayedBeers = await getBeers(API_URL, queryParams);
 
@@ -79,7 +105,7 @@ const App = () => {
       setBeers(displayedBeers);
     };
     getData();
-  }, [abvFilter, classicFilter, phFilter, nameSearch, foodSearch]);
+  }, [abvFilter, classicFilter, phFilter, nameSearch, foodSearch, currentPage]);
 
   return (
     <Router>
@@ -101,6 +127,9 @@ const App = () => {
                   nameSearch={nameSearch}
                   handleFoodInput={handleFoodInput}
                   foodSearch={foodSearch}
+                  handleIncrementPage={handleIncrementPage}
+                  handleDecrementPage={handleDecrementPage}
+                  currentPage={currentPage}
                 />
               )
             }
