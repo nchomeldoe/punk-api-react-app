@@ -15,7 +15,6 @@ const App = () => {
   const [phFilter, setPhFilter] = useState(false);
   const [search, setSearch] = useState("");
   const API_URL = "https://api.punkapi.com/v2/beers";
-  let queryParams = "";
 
   const toggleAbvFilter = () => {
     setAbvFilter(!abvFilter);
@@ -30,6 +29,7 @@ const App = () => {
   };
 
   useEffect(() => {
+    let queryParams = "";
     const getData = async () => {
       if (abvFilter) {
         queryParams += "abv_gt=6&";
