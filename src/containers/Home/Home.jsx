@@ -11,6 +11,10 @@ const Home = ({
   abvFilter,
   classicFilter,
   phFilter,
+  handleNameInput,
+  nameSearch,
+  handleFoodInput,
+  foodSearch,
 }) => {
   return (
     <>
@@ -21,7 +25,10 @@ const Home = ({
         classicFilter={classicFilter}
         togglePhFilter={togglePhFilter}
         phFilter={phFilter}
-        setSearch={setSearch}
+        handleNameInput={handleNameInput}
+        nameSearch={nameSearch}
+        handleFoodInput={handleFoodInput}
+        foodSearch={foodSearch}
       />
       {beers && <Main beers={beers} />}
     </>

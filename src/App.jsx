@@ -10,10 +10,10 @@ import "./App.scss";
 const App = () => {
   const [beers, setBeers] = useState([]);
   const [abvFilter, setAbvFilter] = useState(false);
-  console.log(abvFilter);
   const [classicFilter, setClassicFilter] = useState(false);
   const [phFilter, setPhFilter] = useState(false);
-  const [search, setSearch] = useState("");
+  const [nameSearch, setNameSearch] = useState("");
+  const [foodSearch, setFoodSearch] = useState("");
   const API_URL = "https://api.punkapi.com/v2/beers";
 
   const toggleAbvFilter = () => {
@@ -26,6 +26,14 @@ const App = () => {
 
   const togglePhFilter = () => {
     setPhFilter(!phFilter);
+  };
+
+  const handleNameInput = (e) => {
+    setNameSearch(e.target.value);
+  };
+
+  const handleFoodInput = (e) => {
+    setFoodSearch(e.target.value);
   };
 
   useEffect(() => {
@@ -53,41 +61,25 @@ const App = () => {
         );
       }
 
-      // let displayedBeers = apiBeers;
+      if (nameSearch) {
+        displayedBeers = displayedBeers.filter((beer) => {
+          const beerName = beer.name.toLowerCase();
+          const searchTerm = nameSearch.toLowerCase();
+          return beerName.includes(searchTerm);
+        });
+      }
 
-      // if (abvFilter) {
-      //   displayedBeers = displayedBeers.filter(
-      //     (beer) => beer.abv && beer.abv > 6,
-      //   );
-      // }
-      // if (phFilter) {
-      //   displayedBeers = displayedBeers.filter(
-      //     (beer) => beer.ph && beer.ph < 4,
-      //   );
-      // }
-      // if (classicFilter) {
-      //   displayedBeers = displayedBeers.filter((beer) => {
-      //     const year = beer.first_brewed.slice(3);
-      //     return year < 2010;
-      //   });
-      // }
-      // if (search) {
-      //   displayedBeers = displayedBeers.filter((beer) => {
-      //     const beerName = beer.name.toLowerCase();
-      //     const beerPairing = beer.food_pairing.join(" ").toLowerCase();
-      //     const beerAbv = beer.abv.toString();
-      //     const searchTerm = search.toLowerCase();
-      //     return (
-      //       beerName.includes(searchTerm) ||
-      //       beerPairing.includes(searchTerm) ||
-      //       beerAbv.includes(searchTerm)
-      //     );
-      //   });
-      // }
+      if (foodSearch) {
+        displayedBeers = displayedBeers.filter((beer) => {
+          const beerPairing = beer.food_pairing.join(" ").toLowerCase();
+          const searchTerm = foodSearch.toLowerCase();
+          return beerPairing.includes(searchTerm);
+        });
+      }
       setBeers(displayedBeers);
     };
     getData();
-  }, [abvFilter, classicFilter, phFilter, search]);
+  }, [abvFilter, classicFilter, phFilter, nameSearch, foodSearch]);
 
   return (
     <Router>
@@ -105,7 +97,10 @@ const App = () => {
                   classicFilter={classicFilter}
                   togglePhFilter={togglePhFilter}
                   phFilter={phFilter}
-                  setSearch={setSearch}
+                  handleNameInput={handleNameInput}
+                  nameSearch={nameSearch}
+                  handleFoodInput={handleFoodInput}
+                  foodSearch={foodSearch}
                 />
               )
             }

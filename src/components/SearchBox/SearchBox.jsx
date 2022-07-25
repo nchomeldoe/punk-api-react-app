@@ -5,15 +5,16 @@ import "./SearchBox.scss";
 const SearchBox = ({ by }) => {
   return (
     <div className="search-box">
-      <label className="search-box__label" htmlFor={by}>
-        {by}
+      <label className="search-box__label" htmlFor={by.label}>
+        {by.label}
       </label>
       <input
         className="search-box__input"
         type="text"
-        name={by}
-        id={by}
-        // onInput={(e) => setSearch(e.target.value)}
+        name={by.label}
+        id={by.label}
+        onInput={by.handleInput}
+        value={by.value}
       />
       <FontAwesomeIcon className="search-box__icon" icon={faSearch} />
     </div>
