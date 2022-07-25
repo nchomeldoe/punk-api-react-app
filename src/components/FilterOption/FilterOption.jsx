@@ -14,7 +14,8 @@ const FilterOption = ({ by }) => {
         type="checkbox"
         id={filterBy}
         name={filterBy}
-        // onChange={toggleFilter}
+        onChange={by.handleChange}
+        checked={by.value}
       />
     </div>
   );

@@ -8,18 +8,22 @@ const Home = ({
   toggleClassicFilter,
   togglePhFilter,
   setSearch,
+  abvFilter,
+  classicFilter,
+  phFilter,
 }) => {
   return (
     <>
       <Header
-        // beers={beers}
         toggleAbvFilter={toggleAbvFilter}
+        abvFilter={abvFilter}
         toggleClassicFilter={toggleClassicFilter}
+        classicFilter={classicFilter}
         togglePhFilter={togglePhFilter}
+        phFilter={phFilter}
         setSearch={setSearch}
       />
-
-      <Main beers={beers} />
+      {beers && <Main beers={beers} />}
     </>
   );
 };

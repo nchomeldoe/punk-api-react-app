@@ -10,13 +10,49 @@ import "./App.scss";
 const App = () => {
   const [beers, setBeers] = useState([]);
   const [abvFilter, setAbvFilter] = useState(false);
+  console.log(abvFilter);
   const [classicFilter, setClassicFilter] = useState(false);
   const [phFilter, setPhFilter] = useState(false);
   const [search, setSearch] = useState("");
+  const API_URL = "https://api.punkapi.com/v2/beers";
+  let queryParams = "";
+
+  const toggleAbvFilter = () => {
+    setAbvFilter(!abvFilter);
+  };
+
+  const toggleClassicFilter = () => {
+    setClassicFilter(!classicFilter);
+  };
+
+  const togglePhFilter = () => {
+    setPhFilter(!phFilter);
+  };
 
   useEffect(() => {
     const getData = async () => {
-      const apiBeers = await getBeers();
+      if (abvFilter) {
+        queryParams += "abv_gt=6&";
+      } else {
+        queryParams = queryParams ? queryParams.replace("abv_gt=6&", "") : "";
+      }
+
+      if (classicFilter) {
+        queryParams += "brewed_before=01-2010&";
+      } else {
+        queryParams = queryParams
+          ? queryParams.replace("brewed_before=01-2010&", "")
+          : "";
+      }
+
+      let displayedBeers = await getBeers(API_URL, queryParams);
+
+      if (phFilter) {
+        displayedBeers = displayedBeers.filter(
+          (beer) => beer.ph && beer.ph < 4,
+        );
+      }
+
       // let displayedBeers = apiBeers;
 
       // if (abvFilter) {
@@ -48,24 +84,10 @@ const App = () => {
       //     );
       //   });
       // }
-      setBeers(apiBeers);
+      setBeers(displayedBeers);
     };
     getData();
   }, [abvFilter, classicFilter, phFilter, search]);
-
-  console.log("my beers", beers[0]);
-
-  const toggleAbvFilter = () => {
-    setAbvFilter(!abvFilter);
-  };
-
-  const toggleClassicFilter = () => {
-    setClassicFilter(!classicFilter);
-  };
-
-  const togglePhFilter = () => {
-    setPhFilter(!phFilter);
-  };
 
   return (
     <Router>
@@ -74,13 +96,18 @@ const App = () => {
           <Route
             path="/"
             element={
-              <Home
-                beers={beers}
-                toggleAbvFilter={toggleAbvFilter}
-                toggleClassicFilter={toggleClassicFilter}
-                togglePhFilter={togglePhFilter}
-                setSearch={setSearch}
-              />
+              beers && (
+                <Home
+                  beers={beers}
+                  toggleAbvFilter={toggleAbvFilter}
+                  abvFilter={abvFilter}
+                  toggleClassicFilter={toggleClassicFilter}
+                  classicFilter={classicFilter}
+                  togglePhFilter={togglePhFilter}
+                  phFilter={phFilter}
+                  setSearch={setSearch}
+                />
+              )
             }
           />
           <Route path="/:beerId" element={<SingleBeer beers={beers} />} />

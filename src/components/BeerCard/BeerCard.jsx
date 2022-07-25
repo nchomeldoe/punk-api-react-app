@@ -24,9 +24,14 @@ const BeerCard = ({ beer }) => {
   return (
     <div className="beer-card">
       <div className="beer-card__content-container">
-        <Link to={`/${id}`} className="beer-card__link beer-card__link--image">
-          <img className="beer-card__image" src={image_url} alt={name} />
-        </Link>
+        {image_url && (
+          <Link
+            to={`/${id}`}
+            className="beer-card__link beer-card__link--image"
+          >
+            <img className="beer-card__image" src={image_url} alt={name} />
+          </Link>
+        )}
         <h3 className="beer-card__name">{name}</h3>
         <h4 className="beer-card__tagline">{tagline}</h4>
         <p className="beer-card__abv-ph">

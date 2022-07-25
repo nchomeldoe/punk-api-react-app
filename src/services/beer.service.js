@@ -1,12 +1,12 @@
-const API_URL = "https://api.punkapi.com/v2/beers";
-
-const getBeers = async () => {
+const getBeers = async (url, queryParams) => {
   try {
     let page = 0;
     let allBeerData = [];
     while (1) {
       page++;
-      let response = await fetch(`${API_URL}?page=${page}&per_page=80`);
+      let response = await fetch(
+        `${url}?${queryParams}page=${page}&per_page=80`,
+      );
       if (!response.ok) {
         throw new Error(response.status + " error with request");
       }
@@ -16,7 +16,6 @@ const getBeers = async () => {
       } else {
         break;
       }
-      console.log("all", allBeerData);
     }
     return allBeerData.flat();
   } catch (error) {
