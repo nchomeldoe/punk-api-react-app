@@ -1,3 +1,4 @@
+import FilterOption from "../../components/FilterOption/FilterOption.jsx";
 import SearchBox from "../../components/SearchBox/SearchBox.jsx";
 import "./FilterContainer.scss";
 
@@ -18,7 +19,9 @@ const FilterContainer = ({ type, by }) => {
           <>
             <p className="filter-container__heading">Filter by:</p>
             <div className="filter-container__filters">
-              <p>filter category</p>
+              {by.map((category, i) => (
+                <FilterOption by={category} key={i} />
+              ))}
             </div>
           </>
         ))}

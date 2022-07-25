@@ -11,7 +11,7 @@ const Header = () => {
       <FilterContainer type="search" by={["Name", "Food pairing"]} />
       <FilterContainer
         type="filter"
-        by={[{ "abv-gt": 6 }, { "brewed-before": 2010 }, { "ph-lt": 4 }]}
+        by={[{ "ABV >": 6 }, { "Brewed before": 2010 }, { "pH <": 4 }]}
       />
     </div>
   );
