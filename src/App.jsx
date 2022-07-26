@@ -54,91 +54,73 @@ const App = () => {
     if (!beersArr.length) {
       return;
     }
-
     const numberOfPages = Math.ceil(beersArr.length / 24);
     setPageCount(numberOfPages);
-    console.log(pageCount);
-
     const paginatedBeers = [];
-
     for (let i = 0; i < numberOfPages; i++) {
-      paginatedBeers.push([]);
-      paginatedBeers[i].push(beersArr.splice(0, 24));
+      paginatedBeers.push(beersArr.splice(0, 24));
     }
-
     return paginatedBeers;
   };
 
-  useEffect(() => {
+  const generateQueryParams = () => {
     let queryParams = "";
-    const getData = async () => {
-      if (abvFilter) {
-        queryParams += "abv_gt=6&";
-      } else {
-        queryParams = queryParams ? queryParams.replace("abv_gt=6&", "") : "";
-      }
+    if (abvFilter) {
+      queryParams += "abv_gt=6&";
+    } else {
+      queryParams = queryParams ? queryParams.replace("abv_gt=6&", "") : "";
+    }
+    if (classicFilter) {
+      queryParams += "brewed_before=01-2010&";
+    } else {
+      queryParams = queryParams
+        ? queryParams.replace("brewed_before=01-2010&", "")
+        : "";
+    }
+    return queryParams;
+  };
 
-      if (classicFilter) {
-        queryParams += "brewed_before=01-2010&";
-      } else {
-        queryParams = queryParams
-          ? queryParams.replace("brewed_before=01-2010&", "")
-          : "";
-      }
+  const applyFrontEndFilters = (data) => {
+    if (phFilter) {
+      data = data.filter((beer) => beer.ph && beer.ph < 4);
+    }
 
-      // if (currentPage > 1) {
-      //   queryParams += `page=${currentPage}&`;
-      // } else {
-      //   if (queryParams.includes("page=")) {
-      //     queryParams = queryParams.replace("page=2&", "");
-      //   }
-      // }
+    if (nameSearch) {
+      data = data.filter((beer) => {
+        const beerName = beer.name.toLowerCase();
+        const searchTerm = nameSearch.toLowerCase();
+        return beerName.includes(searchTerm);
+      });
+    }
 
-      let displayedBeers = await getBeers(API_URL, queryParams);
+    if (foodSearch) {
+      data = data.filter((beer) => {
+        const beerPairing = beer.food_pairing.join(" ").toLowerCase();
+        const searchTerm = foodSearch.toLowerCase();
+        return beerPairing.includes(searchTerm);
+      });
+    }
+    return data;
+  };
 
-      if (phFilter) {
-        displayedBeers = displayedBeers.filter(
-          (beer) => beer.ph && beer.ph < 4,
-        );
-      }
+  const getData = async () => {
+    let beerData = await getBeers(API_URL, generateQueryParams());
+    const filteredBeers = applyFrontEndFilters(beerData);
+    const paginatedBeers = paginateBeers(filteredBeers)[currentPage - 1];
+    setBeers(paginatedBeers);
+  };
 
-      if (nameSearch) {
-        displayedBeers = displayedBeers.filter((beer) => {
-          const beerName = beer.name.toLowerCase();
-          const searchTerm = nameSearch.toLowerCase();
-          return beerName.includes(searchTerm);
-        });
-      }
-
-      if (foodSearch) {
-        displayedBeers = displayedBeers.filter((beer) => {
-          const beerPairing = beer.food_pairing.join(" ").toLowerCase();
-          const searchTerm = foodSearch.toLowerCase();
-          return beerPairing.includes(searchTerm);
-        });
-      }
-
-      // const paginatedBeers = [];
-
-      // if (beers.length) {
-      //   setPageCount(Math.ceil((beers.length * 24) ^ -1));
-
-      //   for (let i = 0; i++; i < pageCount) {
-      //     paginatedBeers.push([]);
-      //     paginatedBeers[i].push(beers.splice(0, 24));
-      //   }
-      // } else {
-      //   setIsLoading(true);
-      // }
-      // const paginatedBeers = paginateBeers(displayedBeers);
-
-      console.log("test", paginateBeers(displayedBeers)[pageCount - 1]);
-
-      setBeers(paginateBeers(displayedBeers)[currentPage - 1]);
-      // setBeers(displayedBeers);
-    };
+  useEffect(() => {
     getData();
-  }, [abvFilter, classicFilter, phFilter, nameSearch, foodSearch, currentPage]);
+  }, [
+    beers,
+    abvFilter,
+    classicFilter,
+    phFilter,
+    nameSearch,
+    foodSearch,
+    currentPage,
+  ]);
 
   return (
     <Router>
@@ -147,24 +129,22 @@ const App = () => {
           <Route
             path="/"
             element={
-              beers && (
-                <Home
-                  beers={beers}
-                  toggleAbvFilter={toggleAbvFilter}
-                  abvFilter={abvFilter}
-                  toggleClassicFilter={toggleClassicFilter}
-                  classicFilter={classicFilter}
-                  togglePhFilter={togglePhFilter}
-                  phFilter={phFilter}
-                  handleNameInput={handleNameInput}
-                  nameSearch={nameSearch}
-                  handleFoodInput={handleFoodInput}
-                  foodSearch={foodSearch}
-                  handleIncrementPage={handleIncrementPage}
-                  handleDecrementPage={handleDecrementPage}
-                  currentPage={currentPage}
-                />
-              )
+              <Home
+                beers={beers}
+                toggleAbvFilter={toggleAbvFilter}
+                abvFilter={abvFilter}
+                toggleClassicFilter={toggleClassicFilter}
+                classicFilter={classicFilter}
+                togglePhFilter={togglePhFilter}
+                phFilter={phFilter}
+                handleNameInput={handleNameInput}
+                nameSearch={nameSearch}
+                handleFoodInput={handleFoodInput}
+                foodSearch={foodSearch}
+                handleIncrementPage={handleIncrementPage}
+                handleDecrementPage={handleDecrementPage}
+                currentPage={currentPage}
+              />
             }
           />
           <Route path="/:beerId" element={<SingleBeer beers={beers} />} />

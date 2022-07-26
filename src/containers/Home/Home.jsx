@@ -33,14 +33,12 @@ const Home = ({
         handleFoodInput={handleFoodInput}
         foodSearch={foodSearch}
       />
-      {beers && (
-        <Main
-          beers={beers}
-          handleIncrementPage={handleIncrementPage}
-          handleDecrementPage={handleDecrementPage}
-          currentPage={currentPage}
-        />
-      )}
+      <Main
+        beers={beers}
+        handleIncrementPage={handleIncrementPage}
+        handleDecrementPage={handleDecrementPage}
+        currentPage={currentPage}
+      />
     </>
   );
 };
