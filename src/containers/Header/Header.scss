@@ -17,8 +17,9 @@
   justify-content: center;
   text-align: center;
   @media screen and (max-width: 768px) and (orientation: landscape) {
+    position: static;
     max-width: 40vmax;
-    height: 100vmin;
+    min-height: 100vmin;
     background-image: none;
     background-color: inherit;
     justify-content: flex-start;
