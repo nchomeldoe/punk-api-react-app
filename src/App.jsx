@@ -33,6 +33,11 @@ const App = () => {
     setPhFilter(!phFilter);
   };
 
+  // handleSearchInputn (e) => {
+  // setCuerrent
+  // setseatrchobj{...searcjObj, obj[e.target.name]=}
+  // }
+
   const handleNameInput = (e) => {
     setCurrentPage(1);
     setNameSearch(e.target.value);

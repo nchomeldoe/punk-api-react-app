@@ -7,7 +7,6 @@ const Home = ({
   toggleAbvFilter,
   toggleClassicFilter,
   togglePhFilter,
-  setSearch,
   abvFilter,
   classicFilter,
   phFilter,

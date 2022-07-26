@@ -68,4 +68,37 @@
       width: 8rem;
     }
   }
+
+  &__button {
+    padding: 1rem;
+    background-color: inherit;
+    border: none;
+    font-family: $font-family;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  &__icon {
+    padding-left: 0.5rem;
+    background-color: inherit;
+    border: none;
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  &__filters--hidden {
+    height: 0rem;
+    overflow: hidden;
+    @media screen and (min-width: 768px) {
+      height: auto;
+    }
+  }
+
+  &__filters--visible {
+    height: auto;
+  }
 }
