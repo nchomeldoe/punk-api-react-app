@@ -63,9 +63,6 @@ const App = () => {
   };
 
   const paginateBeers = (beersArr) => {
-    if (!beersArr.length) {
-      return;
-    }
     const numberOfPages = Math.ceil(beersArr.length / 24);
     setPageCount(numberOfPages);
     const paginatedBeers = [];
