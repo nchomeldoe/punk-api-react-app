@@ -15,6 +15,7 @@ const App = () => {
   const [nameSearch, setNameSearch] = useState("");
   const [foodSearch, setFoodSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [pageCount, setPageCount] = useState(1);
   const API_URL = "https://api.punkapi.com/v2/beers";
 
   const toggleAbvFilter = () => {
@@ -49,7 +50,24 @@ const App = () => {
     }
   };
 
-  console.log("cp1", currentPage);
+  const paginateBeers = (beersArr) => {
+    if (!beersArr.length) {
+      return;
+    }
+
+    const numberOfPages = Math.ceil(beersArr.length / 24);
+    setPageCount(numberOfPages);
+    console.log(pageCount);
+
+    const paginatedBeers = [];
+
+    for (let i = 0; i < numberOfPages; i++) {
+      paginatedBeers.push([]);
+      paginatedBeers[i].push(beersArr.splice(0, 24));
+    }
+
+    return paginatedBeers;
+  };
 
   useEffect(() => {
     let queryParams = "";
@@ -68,16 +86,13 @@ const App = () => {
           : "";
       }
 
-      if (currentPage > 1) {
-        queryParams += `page=${currentPage}&`;
-      } else {
-        if (queryParams.includes("page=")) {
-          queryParams = queryParams.replace("page=2&", "");
-        }
-      }
-
-      console.log("cp", currentPage);
-      console.log("qp", queryParams);
+      // if (currentPage > 1) {
+      //   queryParams += `page=${currentPage}&`;
+      // } else {
+      //   if (queryParams.includes("page=")) {
+      //     queryParams = queryParams.replace("page=2&", "");
+      //   }
+      // }
 
       let displayedBeers = await getBeers(API_URL, queryParams);
 
@@ -102,7 +117,25 @@ const App = () => {
           return beerPairing.includes(searchTerm);
         });
       }
-      setBeers(displayedBeers);
+
+      // const paginatedBeers = [];
+
+      // if (beers.length) {
+      //   setPageCount(Math.ceil((beers.length * 24) ^ -1));
+
+      //   for (let i = 0; i++; i < pageCount) {
+      //     paginatedBeers.push([]);
+      //     paginatedBeers[i].push(beers.splice(0, 24));
+      //   }
+      // } else {
+      //   setIsLoading(true);
+      // }
+      // const paginatedBeers = paginateBeers(displayedBeers);
+
+      console.log("test", paginateBeers(displayedBeers)[pageCount - 1]);
+
+      setBeers(paginateBeers(displayedBeers)[currentPage - 1]);
+      // setBeers(displayedBeers);
     };
     getData();
   }, [abvFilter, classicFilter, phFilter, nameSearch, foodSearch, currentPage]);
