@@ -19,27 +19,34 @@ const App = () => {
   const API_URL = "https://api.punkapi.com/v2/beers";
 
   const toggleAbvFilter = () => {
+    setCurrentPage(1);
     setAbvFilter(!abvFilter);
   };
 
   const toggleClassicFilter = () => {
+    setCurrentPage(1);
     setClassicFilter(!classicFilter);
   };
 
   const togglePhFilter = () => {
+    setCurrentPage(1);
     setPhFilter(!phFilter);
   };
 
   const handleNameInput = (e) => {
+    setCurrentPage(1);
     setNameSearch(e.target.value);
   };
 
   const handleFoodInput = (e) => {
+    setCurrentPage(1);
     setFoodSearch(e.target.value);
   };
 
   const handleIncrementPage = () => {
-    setCurrentPage(currentPage + 1);
+    if (currentPage < pageCount) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   const handleDecrementPage = () => {
@@ -80,11 +87,10 @@ const App = () => {
     return queryParams;
   };
 
-  const applyFrontEndFilters = (data) => {
+  const applyFrontEndFilters = (data, phFilter, nameSearch, foodSearch) => {
     if (phFilter) {
       data = data.filter((beer) => beer.ph && beer.ph < 4);
     }
-
     if (nameSearch) {
       data = data.filter((beer) => {
         const beerName = beer.name.toLowerCase();
@@ -92,7 +98,6 @@ const App = () => {
         return beerName.includes(searchTerm);
       });
     }
-
     if (foodSearch) {
       data = data.filter((beer) => {
         const beerPairing = beer.food_pairing.join(" ").toLowerCase();
@@ -103,24 +108,35 @@ const App = () => {
     return data;
   };
 
-  const getData = async () => {
-    let beerData = await getBeers(API_URL, generateQueryParams());
-    const filteredBeers = applyFrontEndFilters(beerData);
-    const paginatedBeers = paginateBeers(filteredBeers)[currentPage - 1];
+  const getData = async (
+    url,
+    params,
+    page,
+    phFilter,
+    nameSearch,
+    foodSearch,
+  ) => {
+    let beerData = await getBeers(url, params);
+    const filteredBeers = applyFrontEndFilters(
+      beerData,
+      phFilter,
+      nameSearch,
+      foodSearch,
+    );
+    const paginatedBeers = paginateBeers(filteredBeers)[page - 1];
     setBeers(paginatedBeers);
   };
 
   useEffect(() => {
-    getData();
-  }, [
-    beers,
-    abvFilter,
-    classicFilter,
-    phFilter,
-    nameSearch,
-    foodSearch,
-    currentPage,
-  ]);
+    getData(
+      API_URL,
+      generateQueryParams(),
+      currentPage,
+      phFilter,
+      nameSearch,
+      foodSearch,
+    );
+  }, [abvFilter, classicFilter, phFilter, nameSearch, foodSearch, currentPage]);
 
   return (
     <Router>
@@ -144,6 +160,7 @@ const App = () => {
                 handleIncrementPage={handleIncrementPage}
                 handleDecrementPage={handleDecrementPage}
                 currentPage={currentPage}
+                pageCount={pageCount}
               />
             }
           />

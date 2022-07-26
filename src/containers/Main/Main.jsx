@@ -7,6 +7,7 @@ const Main = ({
   currentPage,
   handleIncrementPage,
   handleDecrementPage,
+  pageCount,
 }) => {
   return (
     <div className="main">
@@ -19,6 +20,7 @@ const Main = ({
         handleIncrementPage={handleIncrementPage}
         handleDecrementPage={handleDecrementPage}
         currentPage={currentPage}
+        pageCount={pageCount}
       />
     </div>
   );

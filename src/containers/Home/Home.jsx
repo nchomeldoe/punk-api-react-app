@@ -18,6 +18,7 @@ const Home = ({
   currentPage,
   handleIncrementPage,
   handleDecrementPage,
+  pageCount,
 }) => {
   return (
     <>
@@ -38,6 +39,7 @@ const Home = ({
         handleIncrementPage={handleIncrementPage}
         handleDecrementPage={handleDecrementPage}
         currentPage={currentPage}
+        pageCount={pageCount}
       />
     </>
   );
