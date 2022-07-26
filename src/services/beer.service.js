@@ -23,4 +23,17 @@ const getBeers = async (url, queryParams) => {
   }
 };
 
+// const getBeers = async (url, queryParams) => {
+//   try {
+//     const response = await fetch(`${url}?${queryParams}per_page=24`);
+//     if (!response.ok) {
+//       throw new Error(response.status + " error with request");
+//     }
+//     const beerData = await response.json();
+//     return beerData;
+//   } catch (error) {
+//     return error.message;
+//   }
+// };
+
 export default getBeers;

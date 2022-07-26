@@ -15,6 +15,10 @@ const Home = ({
   nameSearch,
   handleFoodInput,
   foodSearch,
+  currentPage,
+  handleIncrementPage,
+  handleDecrementPage,
+  pageCount,
 }) => {
   return (
     <>
@@ -30,7 +34,13 @@ const Home = ({
         handleFoodInput={handleFoodInput}
         foodSearch={foodSearch}
       />
-      {beers && <Main beers={beers} />}
+      <Main
+        beers={beers}
+        handleIncrementPage={handleIncrementPage}
+        handleDecrementPage={handleDecrementPage}
+        currentPage={currentPage}
+        pageCount={pageCount}
+      />
     </>
   );
 };
