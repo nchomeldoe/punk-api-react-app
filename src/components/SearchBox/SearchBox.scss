@@ -13,5 +13,9 @@
     border-bottom: 0.063rem solid $color-text;
     background-color: transparent;
     width: 100%;
+    &::placeholder {
+      font-family: $font-family;
+      color: $color-text;
+    }
   }
 }

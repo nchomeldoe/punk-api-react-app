@@ -5,9 +5,6 @@ import "./SearchBox.scss";
 const SearchBox = ({ by }) => {
   return (
     <div className="search-box">
-      <label className="search-box__label" htmlFor={by.label}>
-        {by.label}
-      </label>
       <input
         className="search-box__input"
         type="text"
@@ -15,8 +12,11 @@ const SearchBox = ({ by }) => {
         id={by.label}
         onInput={by.handleInput}
         value={by.value}
+        placeholder={by.label}
       />
-      <FontAwesomeIcon className="search-box__icon" icon={faSearch} />
+      <label className="search-box__label" htmlFor={by.label}>
+        <FontAwesomeIcon className="search-box__icon" icon={faSearch} />
+      </label>
     </div>
   );
 };
