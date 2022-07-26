@@ -70,23 +70,6 @@ const App = () => {
     return paginatedBeers;
   };
 
-  const generateQueryParams = () => {
-    let queryParams = "";
-    if (abvFilter) {
-      queryParams += "abv_gt=6&";
-    } else {
-      queryParams = queryParams ? queryParams.replace("abv_gt=6&", "") : "";
-    }
-    if (classicFilter) {
-      queryParams += "brewed_before=01-2010&";
-    } else {
-      queryParams = queryParams
-        ? queryParams.replace("brewed_before=01-2010&", "")
-        : "";
-    }
-    return queryParams;
-  };
-
   const applyFrontEndFilters = (data, phFilter, nameSearch, foodSearch) => {
     if (phFilter) {
       data = data.filter((beer) => beer.ph && beer.ph < 4);
@@ -108,26 +91,41 @@ const App = () => {
     return data;
   };
 
-  const getData = async (
-    url,
-    params,
-    page,
-    phFilter,
-    nameSearch,
-    foodSearch,
-  ) => {
-    let beerData = await getBeers(url, params);
-    const filteredBeers = applyFrontEndFilters(
-      beerData,
+  useEffect(() => {
+    const generateQueryParams = () => {
+      let queryParams = "";
+      if (abvFilter) {
+        queryParams += "abv_gt=6&";
+      } else {
+        queryParams = queryParams ? queryParams.replace("abv_gt=6&", "") : "";
+      }
+      if (classicFilter) {
+        queryParams += "brewed_before=01-2010&";
+      } else {
+        queryParams = queryParams
+          ? queryParams.replace("brewed_before=01-2010&", "")
+          : "";
+      }
+      return queryParams;
+    };
+    const getData = async (
+      url,
+      params,
+      page,
       phFilter,
       nameSearch,
       foodSearch,
-    );
-    const paginatedBeers = paginateBeers(filteredBeers)[page - 1];
-    setBeers(paginatedBeers);
-  };
-
-  useEffect(() => {
+    ) => {
+      let beerData = await getBeers(url, params);
+      const filteredBeers = applyFrontEndFilters(
+        beerData,
+        phFilter,
+        nameSearch,
+        foodSearch,
+      );
+      const paginatedBeers = paginateBeers(filteredBeers)[page - 1];
+      setBeers(paginatedBeers);
+    };
     getData(
       API_URL,
       generateQueryParams(),
