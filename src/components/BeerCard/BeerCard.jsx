@@ -39,7 +39,7 @@ const BeerCard = ({ beer }) => {
             </li>
           ))}
         </ul>
-        <h5 className="beer-card__more-info">Find out more...</h5>
+        {/* <h5 className="beer-card__more-info">Find out more...</h5> */}
       </div>
     </div>
   );
