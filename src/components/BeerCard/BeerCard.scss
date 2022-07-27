@@ -6,10 +6,10 @@
   align-items: center;
   height: 25rem;
   max-width: 25rem;
-  background-color: $color-card;
+  background-color: $color-white;
   border-radius: 0.5rem;
-  color: $color-text;
-  border: 0.063rem solid $color-text;
+  color: $color-black;
+  box-shadow: 0.2rem 0.25rem 0.5rem -0.25rem;
   @media screen and (max-width: 768px) and (orientation: landscape) {
     height: 95vmin;
   }

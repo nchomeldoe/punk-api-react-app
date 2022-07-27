@@ -4,11 +4,6 @@
   display: flex;
   font-family: $font-family;
   flex-direction: column;
-  background-image: linear-gradient(
-    to bottom,
-    $gradient-color-start,
-    $gradient-color-finish
-  );
   @media screen and (max-width: 768px) and (orientation: landscape) {
     flex-direction: row;
   }
