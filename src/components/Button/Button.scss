@@ -1,0 +1,15 @@
+@use "../../assets/sass/_variables.scss" as *;
+
+.button {
+  padding: 0.5rem 1rem;
+  background-color: $color-white;
+  border: none;
+  box-shadow: 0.25rem 0.25rem 0.5rem -0.25rem;
+  border-radius: 0.2rem;
+  &:hover {
+    box-shadow: 0.2rem 0.2rem;
+  }
+  &:active {
+    box-shadow: 0.1rem 0.1rem;
+  }
+}

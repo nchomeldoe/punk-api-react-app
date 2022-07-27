@@ -20,8 +20,11 @@ const Header = ({
   handleFoodInput,
   foodSearch,
 }) => {
+  //state
   const [arrowType, setArrowType] = useState(faArrowDown);
   const [displayStatus, setDisplayStatus] = useState("hidden");
+
+  //toggle up/down arrows and display status to create dropdown filter container in mobile
   const handleDisplay = () => {
     arrowType === faArrowDown
       ? setArrowType(faArrowUp)

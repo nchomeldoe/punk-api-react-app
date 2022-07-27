@@ -12,14 +12,16 @@ const BeerCard = ({ beer }) => {
     food_pairing,
   } = beer;
 
+  //get first sentence of description
   let trimmedDescription = description?.split(". ")[0] || "";
 
+  //add full stop if necessary
   if (trimmedDescription.charAt(trimmedDescription.length - 1) !== ".") {
     trimmedDescription += ".";
   }
 
   return (
-    <div className="beer-card" tabindex="0">
+    <div className="beer-card" tabIndex="0">
       <div className="beer-card__content-container">
         {image_url && (
           <img className="beer-card__image" src={image_url} alt={name} />

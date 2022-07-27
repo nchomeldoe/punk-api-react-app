@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
+import Button from "../Button/Button.jsx";
 import "./PageSelector.scss";
 
 const PageSelector = ({
@@ -12,25 +13,21 @@ const PageSelector = ({
 }) => {
   return (
     <div className="page-selector">
-      <button
-        className="page-selector__button"
-        disabled={currentPage === 1}
-        onClick={handleDecrementPage}
-        aria-label="go to previous page"
-      >
-        <FontAwesomeIcon className="page-selector__icon" icon={faArrowLeft} />
-      </button>
+      <Button
+        disabledConditions={currentPage === 1}
+        handleClick={handleDecrementPage}
+        ariaLabel="go to previous page"
+        icon={<FontAwesomeIcon icon={faArrowLeft} />}
+      />
       <div className="page-selector__current-page-box">
         <p className="page-selector__current-page">{currentPage}</p>
       </div>
-      <button
-        className="page-selector__button"
-        onClick={handleIncrementPage}
-        disabled={currentPage === pageCount}
-        aria-label="go to next page"
-      >
-        <FontAwesomeIcon className="search-box__icon" icon={faArrowRight} />
-      </button>
+      <Button
+        disabledConditions={currentPage === pageCount}
+        handleClick={handleIncrementPage}
+        ariaLabel="go to next page"
+        icon={<FontAwesomeIcon icon={faArrowRight} />}
+      />
     </div>
   );
 };
