@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
-
 import getBeers from "./services/beer.service.js";
-import Home from "./containers/Home/Home.jsx";
-import SingleBeer from "./components/SingleBeer/SingleBeer.jsx";
+import Main from "./containers/Main/Main";
+import Header from "./containers/Header/Header";
 import "./App.scss";
 
 const App = () => {
@@ -139,35 +137,29 @@ const App = () => {
   }, [abvFilter, classicFilter, phFilter, nameSearch, foodSearch, currentPage]);
 
   return (
-    <Router>
-      <div className="app">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                beers={beers}
-                toggleAbvFilter={toggleAbvFilter}
-                abvFilter={abvFilter}
-                toggleClassicFilter={toggleClassicFilter}
-                classicFilter={classicFilter}
-                togglePhFilter={togglePhFilter}
-                phFilter={phFilter}
-                handleNameInput={handleNameInput}
-                nameSearch={nameSearch}
-                handleFoodInput={handleFoodInput}
-                foodSearch={foodSearch}
-                handleIncrementPage={handleIncrementPage}
-                handleDecrementPage={handleDecrementPage}
-                currentPage={currentPage}
-                pageCount={pageCount}
-              />
-            }
-          />
-          <Route path="/:beerId" element={<SingleBeer beers={beers} />} />
-        </Routes>
-      </div>
-    </Router>
+    <div className="app">
+      <Header
+        toggleAbvFilter={toggleAbvFilter}
+        abvFilter={abvFilter}
+        toggleClassicFilter={toggleClassicFilter}
+        classicFilter={classicFilter}
+        togglePhFilter={togglePhFilter}
+        phFilter={phFilter}
+        handleNameInput={handleNameInput}
+        nameSearch={nameSearch}
+        handleFoodInput={handleFoodInput}
+        foodSearch={foodSearch}
+      />
+      {beers && (
+        <Main
+          beers={beers}
+          handleIncrementPage={handleIncrementPage}
+          handleDecrementPage={handleDecrementPage}
+          currentPage={currentPage}
+          pageCount={pageCount}
+        />
+      )}
+    </div>
   );
 };
 
