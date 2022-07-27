@@ -127,6 +127,7 @@ const App = () => {
       );
       const paginatedBeers = paginateBeers(filteredBeers)[page - 1];
       setBeers(paginatedBeers);
+      setIsLoading(false);
     };
     setIsLoading(true);
     getData(
@@ -137,9 +138,6 @@ const App = () => {
       nameSearch,
       foodSearch,
     );
-    if (beers) {
-      setIsLoading(false);
-    }
   }, [abvFilter, classicFilter, phFilter, nameSearch, foodSearch, currentPage]);
 
   return (
