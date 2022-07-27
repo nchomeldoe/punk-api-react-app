@@ -35,7 +35,6 @@ const Header = ({
     <div className="header">
       <h1 className="header__heading">BrewDog Beer</h1>
       <h2 className="header__subheading">Back Catalogue</h2>
-      <hr className="header__separator" />
       <button className="header__button" onClick={handleDisplay}>
         Search/Filter
         <FontAwesomeIcon className="header__icon" icon={arrowType} />

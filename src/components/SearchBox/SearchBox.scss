@@ -4,18 +4,16 @@
   font-size: 0.8rem;
   display: flex;
   margin-bottom: 1.4rem;
-  text-align: justify;
-  align-items: flex-end;
 
   &__input {
-    margin: 0rem 0.4rem;
     border: none;
-    border-bottom: 0.063rem solid $color-text;
+    border-bottom: 0.063rem solid $color-white;
     background-color: transparent;
     width: 100%;
+    color: $color-white;
     &::placeholder {
       font-family: $font-family;
-      color: $color-text;
+      color: $color-white;
     }
   }
 }
