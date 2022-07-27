@@ -3,6 +3,7 @@ import "./FilterOption.scss";
 const FilterOption = ({ by }) => {
   const filterCategory = Object.keys(by)[0];
   const filterBy = `${Object.keys(by)[0]} ${by[filterCategory]}`;
+  const { handleChange, value } = by;
 
   return (
     <div className="filter-option">
@@ -14,8 +15,8 @@ const FilterOption = ({ by }) => {
         type="checkbox"
         id={filterBy}
         name={filterBy}
-        onChange={by.handleChange}
-        checked={by.value}
+        onChange={handleChange}
+        checked={value}
       />
     </div>
   );

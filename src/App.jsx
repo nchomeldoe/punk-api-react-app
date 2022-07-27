@@ -7,7 +7,10 @@ import Message from "./components/Message/Message.jsx";
 import "./App.scss";
 
 const App = () => {
+  // state
   const [beers, setBeers] = useState([]);
+  // const [frontEndFilters, setFrontEndFilters] = useState({});
+  // const [backEndFilters, setBackEndFilters] = useState({});
   const [abvFilter, setAbvFilter] = useState(false);
   const [classicFilter, setClassicFilter] = useState(false);
   const [phFilter, setPhFilter] = useState(false);
@@ -16,8 +19,11 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+
+  // API URL
   const API_URL = "https://api.punkapi.com/v2/beers";
 
+  // Funcs for toggling filters and resetting page to 1 each time
   const toggleAbvFilter = () => {
     setCurrentPage(1);
     setAbvFilter(!abvFilter);
@@ -38,6 +44,7 @@ const App = () => {
   // setseatrchobj{...searcjObj, obj[e.target.name]=}
   // }
 
+  // Funcs for handling imputs and resetting page to 1 each time
   const handleNameInput = (e) => {
     setCurrentPage(1);
     setNameSearch(e.target.value);
@@ -48,6 +55,7 @@ const App = () => {
     setFoodSearch(e.target.value);
   };
 
+  // Funcs for incrementing/decrementing page
   const handleIncrementPage = () => {
     if (currentPage < pageCount) {
       setCurrentPage(currentPage + 1);
@@ -62,6 +70,7 @@ const App = () => {
     }
   };
 
+  // Paginating results
   const paginateBeers = (beersArr) => {
     const numberOfPages = Math.ceil(beersArr.length / 24);
     setPageCount(numberOfPages);
@@ -72,6 +81,7 @@ const App = () => {
     return paginatedBeers;
   };
 
+  // Applying front-end filters to results
   const applyFrontEndFilters = (data, phFilter, nameSearch, foodSearch) => {
     if (phFilter) {
       data = data.filter((beer) => beer.ph && beer.ph < 4);
@@ -93,23 +103,26 @@ const App = () => {
     return data;
   };
 
+  //Generating query params for backend filtering
+  const generateQueryParams = (abvFilter, classicFilter) => {
+    let queryParams = "";
+    if (abvFilter) {
+      queryParams += "abv_gt=6&";
+    } else {
+      queryParams = queryParams ? queryParams.replace("abv_gt=6&", "") : "";
+    }
+    if (classicFilter) {
+      queryParams += "brewed_before=01-2010&";
+    } else {
+      queryParams = queryParams
+        ? queryParams.replace("brewed_before=01-2010&", "")
+        : "";
+    }
+    return queryParams;
+  };
+
   useEffect(() => {
-    const generateQueryParams = () => {
-      let queryParams = "";
-      if (abvFilter) {
-        queryParams += "abv_gt=6&";
-      } else {
-        queryParams = queryParams ? queryParams.replace("abv_gt=6&", "") : "";
-      }
-      if (classicFilter) {
-        queryParams += "brewed_before=01-2010&";
-      } else {
-        queryParams = queryParams
-          ? queryParams.replace("brewed_before=01-2010&", "")
-          : "";
-      }
-      return queryParams;
-    };
+    //func to get beers to display
     const getData = async (
       url,
       params,
@@ -129,10 +142,14 @@ const App = () => {
       setBeers(paginatedBeers);
       setIsLoading(false);
     };
+
+    //set isLoading to true
     setIsLoading(true);
+
+    //get beers
     getData(
       API_URL,
-      generateQueryParams(),
+      generateQueryParams(abvFilter, classicFilter),
       currentPage,
       phFilter,
       nameSearch,
