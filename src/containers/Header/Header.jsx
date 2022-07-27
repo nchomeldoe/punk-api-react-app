@@ -33,8 +33,7 @@ const Header = ({
 
   return (
     <div className="header">
-      <h1 className="header__heading">BrewDog Beer</h1>
-      <h2 className="header__subheading">Back Catalogue</h2>
+      <h1 className="header__heading">BrewDog</h1>
       <button className="header__button" onClick={handleDisplay}>
         Search/Filter
         <FontAwesomeIcon className="header__icon" icon={arrowType} />
