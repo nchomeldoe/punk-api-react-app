@@ -16,6 +16,7 @@ const PageSelector = ({
         className="page-selector__button"
         disabled={currentPage === 1}
         onClick={handleDecrementPage}
+        aria-label="go to previous page"
       >
         <FontAwesomeIcon className="page-selector__icon" icon={faArrowLeft} />
       </button>
@@ -26,6 +27,7 @@ const PageSelector = ({
         className="page-selector__button"
         onClick={handleIncrementPage}
         disabled={currentPage === pageCount}
+        aria-label="go to next page"
       >
         <FontAwesomeIcon className="search-box__icon" icon={faArrowRight} />
       </button>

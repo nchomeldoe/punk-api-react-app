@@ -13,6 +13,7 @@ const SearchBox = ({ by }) => {
         onInput={by.handleInput}
         value={by.value}
         placeholder={by.label}
+        aria-label="search by"
       />
       <label className="search-box__label" htmlFor={by.label}>
         <FontAwesomeIcon className="search-box__icon" icon={faSearch} />

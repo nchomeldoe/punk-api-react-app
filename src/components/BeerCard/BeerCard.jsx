@@ -19,19 +19,19 @@ const BeerCard = ({ beer }) => {
   }
 
   return (
-    <div className="beer-card">
+    <div className="beer-card" tabindex="0">
       <div className="beer-card__content-container">
         {image_url && (
           <img className="beer-card__image" src={image_url} alt={name} />
         )}
-        <h3 className="beer-card__name">{name}</h3>
-        <h4 className="beer-card__tagline">{tagline}</h4>
+        <h2 className="beer-card__name">{name}</h2>
+        <h3 className="beer-card__tagline">{tagline}</h3>
         <p className="beer-card__abv-ph">
           ABV: {abv} | pH: {ph}
         </p>
         <p className="beer-card__first-brewed">Since: {first_brewed}</p>
         <p className="beer-card__description">{trimmedDescription}</p>
-        <h5 className="beer-card__pairings-header">Pair with:</h5>
+        <h4 className="beer-card__pairings-header">Pair with:</h4>
         <ul className="beer-card__pairings">
           {food_pairing?.map((dish, index) => (
             <li key={index} className="beer-card__pairing">
@@ -39,7 +39,6 @@ const BeerCard = ({ beer }) => {
             </li>
           ))}
         </ul>
-        {/* <h5 className="beer-card__more-info">Find out more...</h5> */}
       </div>
     </div>
   );
