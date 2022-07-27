@@ -8,21 +8,14 @@ import FilterContainer from "../FilterContainer/FilterContainer.jsx";
 
 import "./Header.scss";
 
-const Header = ({
-  toggleAbvFilter,
-  toggleClassicFilter,
-  togglePhFilter,
-  abvFilter,
-  classicFilter,
-  phFilter,
-  handleNameInput,
-  nameSearch,
-  handleFoodInput,
-  foodSearch,
-}) => {
+const Header = ({ handleFilters, filters }) => {
   //state
   const [arrowType, setArrowType] = useState(faArrowDown);
   const [displayStatus, setDisplayStatus] = useState("hidden");
+
+  //deconstructing filters
+  const { abvFilter, classicFilter, phFilter, nameSearch, foodSearch } =
+    filters;
 
   //toggle up/down arrows and display status to create dropdown filter container in mobile
   const handleDisplay = () => {
@@ -44,29 +37,37 @@ const Header = ({
       <div className={`header__filters header__filters--${displayStatus}`}>
         <FilterContainer
           type="search"
-          by={[
+          details={[
             {
               label: "Name",
-              handleInput: handleNameInput,
-              value: nameSearch,
+              handleInput: handleFilters,
+              value: nameSearch.value,
             },
             {
               label: "Food pairing",
-              handleInput: handleFoodInput,
-              value: foodSearch,
+              handleInput: handleFilters,
+              value: foodSearch.value,
             },
           ]}
         />
         <FilterContainer
           type="filter"
-          by={[
-            { "ABV >": 6, handleChange: toggleAbvFilter, value: abvFilter },
+          details={[
             {
-              "Brewed before": 2010,
-              handleChange: toggleClassicFilter,
-              value: classicFilter,
+              label: "ABV > 6",
+              handleInput: handleFilters,
+              value: abvFilter.value,
             },
-            { "pH <": 4, handleChange: togglePhFilter, value: phFilter },
+            {
+              label: "Brewed before 2010",
+              handleInput: handleFilters,
+              value: classicFilter.value,
+            },
+            {
+              label: "pH < 4",
+              handleInput: handleFilters,
+              value: phFilter.value,
+            },
           ]}
         />
       </div>
