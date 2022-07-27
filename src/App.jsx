@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import getBeers from "./services/beer.service.js";
 import Main from "./containers/Main/Main";
 import Header from "./containers/Header/Header";
+import Message from "./components/Message/Message.jsx";
 import "./App.scss";
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
   const [foodSearch, setFoodSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const API_URL = "https://api.punkapi.com/v2/beers";
 
   const toggleAbvFilter = () => {
@@ -126,6 +128,7 @@ const App = () => {
       const paginatedBeers = paginateBeers(filteredBeers)[page - 1];
       setBeers(paginatedBeers);
     };
+    setIsLoading(true);
     getData(
       API_URL,
       generateQueryParams(),
@@ -134,6 +137,9 @@ const App = () => {
       nameSearch,
       foodSearch,
     );
+    if (beers) {
+      setIsLoading(false);
+    }
   }, [abvFilter, classicFilter, phFilter, nameSearch, foodSearch, currentPage]);
 
   return (
@@ -150,7 +156,9 @@ const App = () => {
         handleFoodInput={handleFoodInput}
         foodSearch={foodSearch}
       />
-      {beers && (
+      {isLoading ? (
+        <Message displayedMessage="Loading..." />
+      ) : beers ? (
         <Main
           beers={beers}
           handleIncrementPage={handleIncrementPage}
@@ -158,6 +166,8 @@ const App = () => {
           currentPage={currentPage}
           pageCount={pageCount}
         />
+      ) : (
+        <Message displayedMessage="No matching beers found" />
       )}
     </div>
   );
