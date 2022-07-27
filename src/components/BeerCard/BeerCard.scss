@@ -32,13 +32,9 @@
     }
   }
 
-  &__link--image {
+  &__image {
     height: 50%;
     margin-bottom: 0.4rem;
-  }
-
-  &__image {
-    height: 100%;
     cursor: pointer;
   }
 
@@ -80,16 +76,8 @@
     margin-bottom: 0.2rem;
   }
 
-  &__link--more-info {
-    text-decoration: none;
-  }
-
   &__more-info {
     text-align: center;
-    color: $color-text;
     cursor: pointer;
-    &:hover {
-      text-shadow: 0.125rem 0.125rem 0.125rem $gradient-color-start;
-    }
   }
 }
