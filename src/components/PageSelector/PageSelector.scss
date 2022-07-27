@@ -2,17 +2,27 @@
 
 .page-selector {
   display: flex;
-  width: 40%;
-  justify-content: space-between;
+  gap: 1rem;
+
+  padding: 0.5rem;
   &__button {
-    padding: 1rem;
-    background-color: $color-card;
+    padding: 0.5rem 1rem;
+    background-color: $color-white;
+    border: none;
+    box-shadow: 0.25rem 0.25rem 0.5rem -0.25rem;
+    border-radius: 0.2rem;
+    &:hover {
+      box-shadow: 0.2rem 0.2rem;
+    }
+    &:active {
+      box-shadow: 0.1rem 0.1rem;
+    }
   }
   &__current-page-box {
-    padding: 0.8rem;
-    border: 0.08rem solid $color-text;
+    padding: 0.8rem 1rem;
+
+    box-shadow: 0.25rem 0.25rem 0.5rem -0.25rem;
     border-radius: 0.2rem;
-    font-size: 1.5rem;
-    background-color: $color-card;
+    background-color: $color-white;
   }
 }
