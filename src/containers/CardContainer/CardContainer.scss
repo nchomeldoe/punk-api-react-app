@@ -1,0 +1,15 @@
+.card-container {
+  display: grid;
+  padding: 1rem;
+  gap: 1rem;
+
+  @media screen and (min-width: 768px) {
+    max-height: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    grid-gap: 1rem;
+    justify-content: space-evenly;
+    padding: 1rem;
+  }
+}

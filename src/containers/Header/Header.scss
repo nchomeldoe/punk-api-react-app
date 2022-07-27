@@ -13,12 +13,16 @@
   justify-content: center;
   text-align: center;
   @media screen and (max-width: 768px) and (orientation: landscape) {
-    position: static;
+    // position: static;
+    position: sticky;
+    top: 0;
     max-width: 40vmax;
     min-height: 100vmin;
     justify-content: flex-start;
   }
   @media screen and (min-width: 768px) {
+    position: sticky;
+    top: 0;
     width: 40vw;
     height: 100vh;
     justify-content: flex-start;

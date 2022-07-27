@@ -1,4 +1,4 @@
-import BeerCard from "../../components/BeerCard/BeerCard";
+import CardContainer from "../CardContainer/CardContainer";
 import PageSelector from "../../components/PageSelector/PageSelector";
 import "./Main.scss";
 
@@ -11,11 +11,7 @@ const Main = ({
 }) => {
   return (
     <div className="main">
-      <div className="main__beer-cards">
-        {beers?.map((beer) => (
-          <BeerCard beer={beer} key={beer.id} />
-        ))}
-      </div>
+      <CardContainer beers={beers} />
       <PageSelector
         handleIncrementPage={handleIncrementPage}
         handleDecrementPage={handleDecrementPage}
