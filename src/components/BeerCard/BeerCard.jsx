@@ -10,7 +10,6 @@ const BeerCard = ({ beer }) => {
     abv,
     ph,
     food_pairing,
-    id,
   } = beer;
 
   let trimmedDescription = description?.split(". ")[0] || "";
