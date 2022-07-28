@@ -9,13 +9,38 @@ import "./App.scss";
 const App = () => {
   // state
   const [beers, setBeers] = useState([]);
-  // const [frontEndFilters, setFrontEndFilters] = useState({});
-  // const [backEndFilters, setBackEndFilters] = useState({});
-  const [abvFilter, setAbvFilter] = useState(false);
-  const [classicFilter, setClassicFilter] = useState(false);
-  const [phFilter, setPhFilter] = useState(false);
-  const [nameSearch, setNameSearch] = useState("");
-  const [foodSearch, setFoodSearch] = useState("");
+  const [filters, setFilters] = useState({
+    nameSearch: {
+      value: "",
+      type: "frontEnd",
+      inputType: "text",
+      label: "Name",
+    },
+    foodSearch: {
+      value: "",
+      type: "frontEnd",
+      inputType: "text",
+      label: "Food pairing",
+    },
+    abvFilter: {
+      value: false,
+      type: "backEnd",
+      inputType: "checkbox",
+      label: "ABV > 6",
+    },
+    classicFilter: {
+      value: false,
+      type: "backEnd",
+      inputType: "checkbox",
+      label: "Brewed before 2010",
+    },
+    phFilter: {
+      value: false,
+      type: "frontEnd",
+      inputType: "checkbox",
+      label: "pH < 4",
+    },
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -23,36 +48,18 @@ const App = () => {
   // API URL
   const API_URL = "https://api.punkapi.com/v2/beers";
 
-  // Funcs for toggling filters and resetting page to 1 each time
-  const toggleAbvFilter = () => {
+  // setting filters on input and resetting page to 1 each time
+  const handleFilters = (e) => {
     setCurrentPage(1);
-    setAbvFilter(!abvFilter);
-  };
-
-  const toggleClassicFilter = () => {
-    setCurrentPage(1);
-    setClassicFilter(!classicFilter);
-  };
-
-  const togglePhFilter = () => {
-    setCurrentPage(1);
-    setPhFilter(!phFilter);
-  };
-
-  // handleSearchInputn (e) => {
-  // setCuerrent
-  // setseatrchobj{...searcjObj, obj[e.target.name]=}
-  // }
-
-  // Funcs for handling imputs and resetting page to 1 each time
-  const handleNameInput = (e) => {
-    setCurrentPage(1);
-    setNameSearch(e.target.value);
-  };
-
-  const handleFoodInput = (e) => {
-    setCurrentPage(1);
-    setFoodSearch(e.target.value);
+    const filterName = e.target.name;
+    if (e.target.type === "checkbox") {
+      setFilters(
+        { ...filters },
+        (filters[filterName].value = !filters[filterName].value),
+      );
+    } else if (e.target.type === "text") {
+      setFilters({ ...filters }, (filters[filterName].value = e.target.value));
+    }
   };
 
   // Funcs for incrementing/decrementing page
@@ -146,31 +153,24 @@ const App = () => {
     //set isLoading to true
     setIsLoading(true);
 
+    //deconstructing filters
+    const { abvFilter, classicFilter, phFilter, nameSearch, foodSearch } =
+      filters;
+
     //get beers
     getData(
       API_URL,
-      generateQueryParams(abvFilter, classicFilter),
+      generateQueryParams(abvFilter.value, classicFilter.value),
       currentPage,
-      phFilter,
-      nameSearch,
-      foodSearch,
+      phFilter.value,
+      nameSearch.value,
+      foodSearch.value,
     );
-  }, [abvFilter, classicFilter, phFilter, nameSearch, foodSearch, currentPage]);
+  }, [filters, currentPage]);
 
   return (
     <div className="app">
-      <Header
-        toggleAbvFilter={toggleAbvFilter}
-        abvFilter={abvFilter}
-        toggleClassicFilter={toggleClassicFilter}
-        classicFilter={classicFilter}
-        togglePhFilter={togglePhFilter}
-        phFilter={phFilter}
-        handleNameInput={handleNameInput}
-        nameSearch={nameSearch}
-        handleFoodInput={handleFoodInput}
-        foodSearch={foodSearch}
-      />
+      <Header handleFilters={handleFilters} filters={filters} />
       {isLoading ? (
         <Message displayedMessage="Loading..." />
       ) : beers ? (

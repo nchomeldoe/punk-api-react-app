@@ -8,18 +8,7 @@ import FilterContainer from "../FilterContainer/FilterContainer.jsx";
 
 import "./Header.scss";
 
-const Header = ({
-  toggleAbvFilter,
-  toggleClassicFilter,
-  togglePhFilter,
-  abvFilter,
-  classicFilter,
-  phFilter,
-  handleNameInput,
-  nameSearch,
-  handleFoodInput,
-  foodSearch,
-}) => {
+const Header = ({ handleFilters, filters }) => {
   //state
   const [arrowType, setArrowType] = useState(faArrowDown);
   const [displayStatus, setDisplayStatus] = useState("hidden");
@@ -44,30 +33,13 @@ const Header = ({
       <div className={`header__filters header__filters--${displayStatus}`}>
         <FilterContainer
           type="search"
-          by={[
-            {
-              label: "Name",
-              handleInput: handleNameInput,
-              value: nameSearch,
-            },
-            {
-              label: "Food pairing",
-              handleInput: handleFoodInput,
-              value: foodSearch,
-            },
-          ]}
+          handleFilters={handleFilters}
+          filters={filters}
         />
         <FilterContainer
           type="filter"
-          by={[
-            { "ABV >": 6, handleChange: toggleAbvFilter, value: abvFilter },
-            {
-              "Brewed before": 2010,
-              handleChange: toggleClassicFilter,
-              value: classicFilter,
-            },
-            { "pH <": 4, handleChange: togglePhFilter, value: phFilter },
-          ]}
+          handleFilters={handleFilters}
+          filters={filters}
         />
       </div>
     </div>

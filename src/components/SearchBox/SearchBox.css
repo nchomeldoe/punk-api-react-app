@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+.search-box {
+  font-size: 0.8rem;
+  display: flex;
+  margin-bottom: 1.4rem;
+}
+.search-box__input {
+  margin-right: 0.5rem;
+  border: none;
+  border-bottom: 0.063rem solid #f7f7f7;
+  background-color: transparent;
+  width: 100%;
+  color: #f7f7f7;
+  padding: 0 0.2rem;
+}
+.search-box__input::-moz-placeholder {
+  font-family: "Ubuntu", sans-serif;
+  color: rgba(247, 247, 247, 0.4117647059);
+}
+.search-box__input:-ms-input-placeholder {
+  font-family: "Ubuntu", sans-serif;
+  color: rgba(247, 247, 247, 0.4117647059);
+}
+.search-box__input::placeholder {
+  font-family: "Ubuntu", sans-serif;
+  color: rgba(247, 247, 247, 0.4117647059);
+}/*# sourceMappingURL=SearchBox.css.map */
