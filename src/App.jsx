@@ -50,7 +50,7 @@ const App = () => {
         setFilters({ ...filters }, (filters.nameSearch.value = e.target.value));
         break;
       case "Food pairing":
-        setFilters({ ...filters }, (filters.nameSearch.value = e.target.value));
+        setFilters({ ...filters }, (filters.foodSearch.value = e.target.value));
         break;
     }
   };
