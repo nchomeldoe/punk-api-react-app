@@ -32,12 +32,12 @@ const Header = ({ handleFilters, filters }) => {
       </button>
       <div className={`header__filters header__filters--${displayStatus}`}>
         <FilterContainer
-          // type="search"
+          type="search"
           handleFilters={handleFilters}
           filters={filters}
         />
         <FilterContainer
-          // type="filter"
+          type="filter"
           handleFilters={handleFilters}
           filters={filters}
         />
