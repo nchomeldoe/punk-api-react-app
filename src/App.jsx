@@ -48,35 +48,17 @@ const App = () => {
   // API URL
   const API_URL = "https://api.punkapi.com/v2/beers";
 
-  // Funcs for setting filters and resetting page to 1 each time
+  // setting filters on input and resetting page to 1 each time
   const handleFilters = (e) => {
     setCurrentPage(1);
-    console.log(e.target.type);
-    switch (e.target.name) {
-      case "ABV > 6":
-        setFilters(
-          { ...filters },
-          (filters.abvFilter.value = !filters.abvFilter.value),
-        );
-        break;
-      case "Brewed before 2010":
-        setFilters(
-          { ...filters },
-          (filters.classicFilter.value = !filters.classicFilter.value),
-        );
-        break;
-      case "pH < 4":
-        setFilters(
-          { ...filters },
-          (filters.phFilter.value = !filters.phFilter.value),
-        );
-        break;
-      case "Name":
-        setFilters({ ...filters }, (filters.nameSearch.value = e.target.value));
-        break;
-      case "Food pairing":
-        setFilters({ ...filters }, (filters.foodSearch.value = e.target.value));
-        break;
+    const filterName = e.target.name;
+    if (e.target.type === "checkbox") {
+      setFilters(
+        { ...filters },
+        (filters[filterName].value = !filters[filterName].value),
+      );
+    } else if (e.target.type === "text") {
+      setFilters({ ...filters }, (filters[filterName].value = e.target.value));
     }
   };
 
