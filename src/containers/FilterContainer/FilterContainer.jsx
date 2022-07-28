@@ -19,6 +19,8 @@ const FilterContainer = ({ type, handleFilters, filters }) => {
                 key={`${i}-${filter[0]}`}
               />
             );
+          } else {
+            return null;
           }
         })) ||
         (type === "filter" &&
@@ -33,6 +35,8 @@ const FilterContainer = ({ type, handleFilters, filters }) => {
                   key={`${i}-${filter[0]}`}
                 />
               );
+            } else {
+              return null;
             }
           }))}
     </div>
