@@ -1,7 +1,7 @@
 import "./FilterOption.scss";
 
-const FilterOption = ({ by }) => {
-  const { label, handleInput, value } = by;
+const FilterOption = ({ handleInput, value, label }) => {
+  // const { label, handleInput, value } = by;
 
   return (
     <div className="filter-option">

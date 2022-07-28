@@ -2,8 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./SearchBox.scss";
 
-const SearchBox = ({ by }) => {
-  const { label, handleInput, value } = by;
+const SearchBox = ({ handleInput, value, label }) => {
+  // // const { label, handleInput, value } = by;
+  // const { filterCategory, handleInput } = filterDetails;
+  // console.log(filterCategory);
 
   return (
     <div className="search-box">

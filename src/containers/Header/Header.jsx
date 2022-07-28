@@ -13,10 +13,6 @@ const Header = ({ handleFilters, filters }) => {
   const [arrowType, setArrowType] = useState(faArrowDown);
   const [displayStatus, setDisplayStatus] = useState("hidden");
 
-  //deconstructing filters
-  const { abvFilter, classicFilter, phFilter, nameSearch, foodSearch } =
-    filters;
-
   //toggle up/down arrows and display status to create dropdown filter container in mobile
   const handleDisplay = () => {
     arrowType === faArrowDown
@@ -36,39 +32,14 @@ const Header = ({ handleFilters, filters }) => {
       </button>
       <div className={`header__filters header__filters--${displayStatus}`}>
         <FilterContainer
-          type="search"
-          details={[
-            {
-              label: "Name",
-              handleInput: handleFilters,
-              value: nameSearch.value,
-            },
-            {
-              label: "Food pairing",
-              handleInput: handleFilters,
-              value: foodSearch.value,
-            },
-          ]}
+          // type="search"
+          handleFilters={handleFilters}
+          filters={filters}
         />
         <FilterContainer
-          type="filter"
-          details={[
-            {
-              label: "ABV > 6",
-              handleInput: handleFilters,
-              value: abvFilter.value,
-            },
-            {
-              label: "Brewed before 2010",
-              handleInput: handleFilters,
-              value: classicFilter.value,
-            },
-            {
-              label: "pH < 4",
-              handleInput: handleFilters,
-              value: phFilter.value,
-            },
-          ]}
+          // type="filter"
+          handleFilters={handleFilters}
+          filters={filters}
         />
       </div>
     </div>

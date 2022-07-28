@@ -10,11 +10,36 @@ const App = () => {
   // state
   const [beers, setBeers] = useState([]);
   const [filters, setFilters] = useState({
-    abvFilter: { value: false, type: "backEnd" },
-    classicFilter: { value: false, type: "backEnd" },
-    phFilter: { value: false, type: "frontEnd" },
-    nameSearch: { value: "", type: "frontEnd" },
-    foodSearch: { value: "", type: "frontEnd" },
+    nameSearch: {
+      value: "",
+      type: "frontEnd",
+      inputType: "text",
+      label: "Name",
+    },
+    foodSearch: {
+      value: "",
+      type: "frontEnd",
+      inputType: "text",
+      label: "Food pairing",
+    },
+    abvFilter: {
+      value: false,
+      type: "backEnd",
+      inputType: "checkbox",
+      label: "ABV > 6",
+    },
+    classicFilter: {
+      value: false,
+      type: "backEnd",
+      inputType: "checkbox",
+      label: "Brewed before 2010",
+    },
+    phFilter: {
+      value: false,
+      type: "frontEnd",
+      inputType: "checkbox",
+      label: "pH < 4",
+    },
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
