@@ -3,20 +3,22 @@ import SearchBox from "../../components/SearchBox/SearchBox.jsx";
 import "./FilterContainer.scss";
 
 const FilterContainer = ({ type, handleFilters, filters }) => {
+  //converting filters obj to array for mapping to JSX
   const filtersArr = Object.entries(filters);
 
   return (
     <div className="filter-container">
       {(type === "search" &&
         filtersArr.map((filter, i) => {
-          if (filter[1].inputType === "text") {
+          const [filterName, { inputType, value, label }] = filter;
+          if (inputType === "text") {
             return (
               <SearchBox
-                name={filter[0]}
+                name={filterName}
                 handleInput={handleFilters}
-                value={filter[1].value}
-                label={filter[1].label}
-                key={`${i}-${filter[0]}`}
+                value={value}
+                label={label}
+                key={`${i}-${filterName}`}
               />
             );
           } else {
@@ -25,14 +27,15 @@ const FilterContainer = ({ type, handleFilters, filters }) => {
         })) ||
         (type === "filter" &&
           filtersArr.map((filter, i) => {
-            if (filter[1].inputType === "checkbox") {
+            const [filterName, { inputType, value, label }] = filter;
+            if (inputType === "checkbox") {
               return (
                 <FilterOption
-                  name={filter[0]}
+                  name={filterName}
                   handleInput={handleFilters}
-                  value={filter[1].value}
-                  label={filter[1].label}
-                  key={`${i}-${filter[0]}`}
+                  value={value}
+                  label={label}
+                  key={`${i}-${filterName}`}
                 />
               );
             } else {
