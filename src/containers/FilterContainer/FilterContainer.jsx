@@ -21,9 +21,8 @@ const FilterContainer = ({ type, handleFilters, filters }) => {
                 key={`${i}-${filterName}`}
               />
             );
-          } else {
-            return null;
           }
+          return null;
         })) ||
         (type === "filter" &&
           filtersArr.map((filter, i) => {
@@ -38,9 +37,8 @@ const FilterContainer = ({ type, handleFilters, filters }) => {
                   key={`${i}-${filterName}`}
                 />
               );
-            } else {
-              return null;
             }
+            return null;
           }))}
     </div>
   );

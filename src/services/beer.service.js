@@ -1,3 +1,6 @@
+// API URL
+const API_URL = "https://api.punkapi.com/v2/beers";
+
 // fetch data by iterating through all available pages until no results are returned
 
 const getBeers = async (url, queryParams) => {
@@ -25,4 +28,4 @@ const getBeers = async (url, queryParams) => {
   }
 };
 
-export default getBeers;
+export { getBeers, API_URL };

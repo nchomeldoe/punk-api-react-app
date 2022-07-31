@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 
-import getBeers from "./services/beer.service.js";
+import { getBeers, API_URL } from "./services/beer.service.js";
+import {
+  applyFrontEndFilters,
+  generateQueryParams,
+} from "./helpers/helpers.js";
 import Main from "./containers/Main/Main";
 import Header from "./containers/Header/Header";
 import Message from "./components/Message/Message.jsx";
@@ -45,9 +49,6 @@ const App = () => {
   const [pageCount, setPageCount] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
-  // API URL
-  const API_URL = "https://api.punkapi.com/v2/beers";
-
   // setting filters on input and resetting page to 1 each time
   const handleFilters = (e) => {
     setCurrentPage(1);
@@ -88,48 +89,8 @@ const App = () => {
     return paginatedBeers;
   };
 
-  // Applying front-end filters to results
-  const applyFrontEndFilters = (data, phFilter, nameSearch, foodSearch) => {
-    if (phFilter) {
-      data = data.filter((beer) => beer.ph && beer.ph < 4);
-    }
-    if (nameSearch) {
-      data = data.filter((beer) => {
-        const beerName = beer.name.toLowerCase();
-        const searchTerm = nameSearch.toLowerCase();
-        return beerName.includes(searchTerm);
-      });
-    }
-    if (foodSearch) {
-      data = data.filter((beer) => {
-        const beerPairing = beer.food_pairing.join(" ").toLowerCase();
-        const searchTerm = foodSearch.toLowerCase();
-        return beerPairing.includes(searchTerm);
-      });
-    }
-    return data;
-  };
-
-  //Generating query params for backend filtering
-  const generateQueryParams = (abvFilter, classicFilter) => {
-    let queryParams = "";
-    if (abvFilter) {
-      queryParams += "abv_gt=6&";
-    } else {
-      queryParams = queryParams ? queryParams.replace("abv_gt=6&", "") : "";
-    }
-    if (classicFilter) {
-      queryParams += "brewed_before=01-2010&";
-    } else {
-      queryParams = queryParams
-        ? queryParams.replace("brewed_before=01-2010&", "")
-        : "";
-    }
-    return queryParams;
-  };
-
   useEffect(() => {
-    //func to get beers to display
+    //get beers to display
     const getData = async (
       url,
       params,
