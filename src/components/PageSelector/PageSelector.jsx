@@ -20,7 +20,9 @@ const PageSelector = ({
         icon={<FontAwesomeIcon icon={faArrowLeft} />}
       />
       <div className="page-selector__current-page-box">
-        <p className="page-selector__current-page">{currentPage}</p>
+        <p className="page-selector__current-page" data-testid="current-page">
+          {currentPage}
+        </p>
       </div>
       <Button
         disabledConditions={currentPage === pageCount}
