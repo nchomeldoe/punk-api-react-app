@@ -27,6 +27,10 @@ const testFilters = {
   },
 };
 
+beforeAll(() => {
+  jest.spyOn(console, "error").mockImplementation(jest.fn());
+});
+
 it("should render the title BrewDog", () => {
   render(<Header filters={testFilters} />);
   const heading = screen.getByText(/brewdog/i);

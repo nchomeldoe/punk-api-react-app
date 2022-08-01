@@ -28,6 +28,10 @@ const testFilters = {
   },
 };
 
+beforeAll(() => {
+  jest.spyOn(console, "error").mockImplementation(jest.fn());
+});
+
 it("should render a text input for each search with an input type of text passed to it as props if is it a search type filter container", () => {
   render(<FilterContainer type="search" filters={testFilters} />);
   const textInputs = screen.getAllByRole("textbox");
