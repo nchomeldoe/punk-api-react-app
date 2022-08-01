@@ -1,5 +1,4 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { click } from "@testing-library/user-event/dist/click";
 import FilterOption from "./FilterOption";
 
 it("should render filter option input element with label text passed down as prop", () => {
